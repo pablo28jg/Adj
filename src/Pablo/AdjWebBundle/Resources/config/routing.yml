@@ -1,0 +1,7 @@
+pablo_adj_web_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PabloAdjWebBundle:Default:index }
+
+PabloAdjWebBundle_opcion:
+    resource: "@PabloAdjWebBundle/Resources/config/routing/opcion.yml"
+    prefix:   /opcion

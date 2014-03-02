@@ -1,0 +1,30 @@
+opcion:
+    pattern:  /
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:index" }
+
+opcion_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:show" }
+
+opcion_new:
+    pattern:  /new
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:new" }
+
+opcion_create:
+    pattern:  /create
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:create" }
+    requirements: { _method: post }
+
+opcion_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:edit" }
+
+opcion_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:update" }
+    requirements: { _method: post }
+
+opcion_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:delete" }
+    requirements: { _method: post }

@@ -1,0 +1,7 @@
+parameters:
+#    pablo_adj_web.example.class: Pablo\AdjWebBundle\Example
+
+services:
+#    pablo_adj_web.example:
+#        class: %pablo_adj_web.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
