@@ -21,6 +21,7 @@ class Opcion {
 	 */
 	private $Nombre;
 	
+	
 
     /**
      * Get id

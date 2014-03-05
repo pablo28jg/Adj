@@ -1,0 +1,33 @@
+<?php
+//src/Pablo/AdjWebBundle/Entity/Modulo.php
+namespace Pablo\AdjWebBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="Modulo")
+ */
+class Modulo {
+	/**
+	 * @var integer $ModuloId
+	 * @ORM\Id
+	 * @ORM\Column(name="ModuloId", type="integer", nullable=false)
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
+	/**
+	 * @var string $Nombre
+	 * @ORM\Column(name="Nombre", type="string", length=100, nullable=false)
+	 */
+	private $Nombre;
+	/**
+	 * @var string $Descripcion
+	 * @ORM\Column(name="Descripcion", type="string", length=500, nullable=false)
+	 */
+	private $Descripcion;
+	/**
+	 * @var string $Src
+	 * @ORM\Column(name="Src", type="string", length=200, nullable=false)
+	 */
+	private $Src;
+}
