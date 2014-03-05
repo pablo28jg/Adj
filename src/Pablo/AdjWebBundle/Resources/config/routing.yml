@@ -1,5 +1,5 @@
 pablo_adj_web_homepage:
-    pattern:  /hello/{name}
+    pattern:  /adj
     defaults: { _controller: PabloAdjWebBundle:Default:index }
 
 PabloAdjWebBundle_opcion:
