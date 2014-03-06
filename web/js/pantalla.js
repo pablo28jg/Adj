@@ -3,9 +3,9 @@ var contadorItemsBarraEstado = 0;
 function showItemBarraEstado(nombre)
 {
 	hideItems();
-	$("#contenido_"+nombre).show();				
+	$("#div_contenido_"+nombre).show();				
 }
-function addItemBarraEstado(nombre)
+function addItemBarraEstado(nombre,src)
 {
 	var i;
 	if(findItem(nombre))
@@ -15,8 +15,8 @@ function addItemBarraEstado(nombre)
 	else
 	{
 		hideItems();
-		$("#contenido").append('<div id="contenido_'+nombre+'">'+nombre+'</div>');
-		$("#barraestado").append('<div id="barra_'+nombre+'">'+nombre+'</div>');
+		$("#contenido").append('<div id="div_contenido_'+nombre+'">contenido '+nombre+'</div>');
+		$("#barraestado").append('<div id="div_barra_'+nombre+'" class="div_barraestado"><a href="javascript: addItemBarraEstado(\''+nombre+'\')">'+nombre+'</a></div>');
 		i = findVacio();
 		if(i == -1)
 		{
@@ -51,14 +51,14 @@ function findVacio()
 }
 function removeItemBarraEstado(nombre)
 {
-	$("#contenido_"+nombre).remove();
-	$("#barra_"+nombre).remove();
+	$("#div_contenido_"+nombre).remove();
+	$("#div_barra_"+nombre).remove();
 }
 function hideItems()
 {
 	var i;
 	for(i=0;i<=contadorItemsBarraEstado;i++)
 	{
-		$("#contenido_"+itemsBarraEstado[i]).hide();
+		$("#div_contenido_"+itemsBarraEstado[i]).hide();
 	}
 }
