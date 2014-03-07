@@ -8,7 +8,7 @@ function showItemBarraEstado(nombre)
 function addItemBarraEstado(nombre,src)
 {
 	var i;
-	var ventana;
+	var ventana, item;
 	if(findItem(nombre) != -1)
 	{
 		showItemBarraEstado(nombre);
@@ -16,7 +16,11 @@ function addItemBarraEstado(nombre,src)
 	else
 	{
 		hideItems();
-		$("#contenido").append('<div id="div_contenido_'+nombre+'">contenido '+nombre+'</div>');
+		ventana = '<div id="div_contenido_'+nombre+'">';
+		ventana += '<div style="float:left;width=95%">'+nombre+'</div>';
+		ventana += '<div>x</div>';
+		ventana + = '</div>';
+		$("#contenido").append(ventana);
 		item = '<div id="div_barra_'+nombre+'" class="div_barraestado">';
 		item = item + '<a href="javascript: addItemBarraEstado(\''+nombre+'\')">'+nombre+'</a>';
 		item = item + '</div>';
