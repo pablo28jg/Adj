@@ -8,7 +8,8 @@ function showItemBarraEstado(nombre)
 function addItemBarraEstado(nombre,src)
 {
 	var i;
-	if(findItem(nombre))
+	var ventana;
+	if(findItem(nombre) != -1)
 	{
 		showItemBarraEstado(nombre);
 	}
@@ -16,7 +17,10 @@ function addItemBarraEstado(nombre,src)
 	{
 		hideItems();
 		$("#contenido").append('<div id="div_contenido_'+nombre+'">contenido '+nombre+'</div>');
-		$("#barraestado").append('<div id="div_barra_'+nombre+'" class="div_barraestado"><a href="javascript: addItemBarraEstado(\''+nombre+'\')">'+nombre+'</a></div>');
+		item = '<div id="div_barra_'+nombre+'" class="div_barraestado">';
+		item = item + '<a href="javascript: addItemBarraEstado(\''+nombre+'\')">'+nombre+'</a>';
+		item = item + '</div>';
+		$("#barraestado").append(item);
 		i = findVacio();
 		if(i == -1)
 		{
@@ -34,10 +38,10 @@ function findItem(nombre)
 	{
 		if(itemsBarraEstado[i] == nombre )
 		{
-			return true;
+			return i;
 		}
 	}
-	return false;
+	return -1;
 }
 function findVacio()
 {
@@ -51,8 +55,10 @@ function findVacio()
 }
 function removeItemBarraEstado(nombre)
 {
+	var i = findItem(nombre);
 	$("#div_contenido_"+nombre).remove();
 	$("#div_barra_"+nombre).remove();
+	itemsBarraEstado[i] = '';
 }
 function hideItems()
 {
