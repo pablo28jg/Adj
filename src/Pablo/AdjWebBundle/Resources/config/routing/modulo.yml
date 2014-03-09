@@ -1,0 +1,34 @@
+modulo:
+    pattern:  /
+    defaults: { _controller: "PabloAdjWebBundle:Modulo:index" }
+    
+modulo_list_modulos_usuario:
+    pattern:  /listmodulos
+    defaults: { _controller: "PabloAdjWebBundle:Modulo:listmodulosusuario" }
+
+modulo_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PabloAdjWebBundle:Modulo:show" }
+
+modulo_new:
+    pattern:  /new
+    defaults: { _controller: "PabloAdjWebBundle:Modulo:new" }
+
+modulo_create:
+    pattern:  /create
+    defaults: { _controller: "PabloAdjWebBundle:Modulo:create" }
+    requirements: { _method: post }
+
+modulo_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PabloAdjWebBundle:Modulo:edit" }
+
+modulo_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PabloAdjWebBundle:Modulo:update" }
+    requirements: { _method: post }
+
+modulo_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PabloAdjWebBundle:Modulo:delete" }
+    requirements: { _method: post }

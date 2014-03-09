@@ -2,12 +2,22 @@
 //src/Pablo/AdjWebBundle/Entity/Modulo.php
 namespace Pablo\AdjWebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="Modulo")
+ * @ORM\Entity(repositoryClass="Pablo\AdjWebBundle\Entity\ModuloRepository")
  */
 class Modulo {
+	public function __construct()
+	{
+		$this->Opciones = new ArrayCollection();
+	}
+	public function __toString()
+	{
+		return $this->Nombre;
+	}
 	/**
 	 * @var integer $ModuloId
 	 * @ORM\Id
@@ -30,6 +40,11 @@ class Modulo {
 	 * @ORM\Column(name="Src", type="string", length=200, nullable=false)
 	 */
 	private $Src;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="Opcion", mappedBy="ModuloId")
+	 */
+	protected $Opciones;
 
     /**
      * Get id
@@ -108,5 +123,38 @@ class Modulo {
     public function getSrc()
     {
         return $this->Src;
+    }
+
+    /**
+     * Add Opciones
+     *
+     * @param \Pablo\AdjWebBundle\Entity\Opcion $opciones
+     * @return Modulo
+     */
+    public function addOpcione(\Pablo\AdjWebBundle\Entity\Opcion $opciones)
+    {
+        $this->Opciones[] = $opciones;
+    
+        return $this;
+    }
+
+    /**
+     * Remove Opciones
+     *
+     * @param \Pablo\AdjWebBundle\Entity\Opcion $opciones
+     */
+    public function removeOpcione(\Pablo\AdjWebBundle\Entity\Opcion $opciones)
+    {
+        $this->Opciones->removeElement($opciones);
+    }
+
+    /**
+     * Get Opciones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOpciones()
+    {
+        return $this->Opciones;
     }
 }

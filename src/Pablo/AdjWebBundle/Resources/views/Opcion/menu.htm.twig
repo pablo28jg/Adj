@@ -1,0 +1,5 @@
+<ul>
+	{% for entity in entities %}
+	<li><a href="javascript: addItemBarraEstado('{{ entity.Nombre }}','{{ entity.Descripcion }}','{{ path('opcion_list_opciones_modulo',{ 'moduloId': entity.id }) }}')">{{ entity.Descripcion }}</a></li>
+	{% endfor %}
+</ul>

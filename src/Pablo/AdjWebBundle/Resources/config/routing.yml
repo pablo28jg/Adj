@@ -5,3 +5,7 @@ pablo_adj_web_homepage:
 PabloAdjWebBundle_opcion:
     resource: "@PabloAdjWebBundle/Resources/config/routing/opcion.yml"
     prefix:   /opcion
+    
+PabloAdjWebBundle_modulo:
+    resource: "@PabloAdjWebBundle/Resources/config/routing/modulo.yml"
+    prefix:   /modulo

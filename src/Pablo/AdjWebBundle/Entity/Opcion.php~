@@ -24,7 +24,7 @@ class Opcion {
 	 *   @ORM\JoinColumn(name="ModuloId", referencedColumnName="ModuloId")
 	 * })
 	 */
-	private $ModuloId;
+	private $moduloId;
 	/**
 	 * @var string $Nombre
 	 * @ORM\Column(name="Nombre", type="string", length=100, nullable=false)
@@ -120,28 +120,5 @@ class Opcion {
     public function getSrc()
     {
         return $this->Src;
-    }
-
-    /**
-     * Set moduloId
-     *
-     * @param \Pablo\AdjWebBundle\Entity\Modulo $moduloId
-     * @return Opcion
-     */
-    public function setModuloId(\Pablo\AdjWebBundle\Entity\Modulo $moduloId = null)
-    {
-        $this->ModuloId = $moduloId;
-    
-        return $this;
-    }
-
-    /**
-     * Get moduloId
-     *
-     * @return \Pablo\AdjWebBundle\Entity\Modulo 
-     */
-    public function getModuloId()
-    {
-        return $this->ModuloId;
     }
 }

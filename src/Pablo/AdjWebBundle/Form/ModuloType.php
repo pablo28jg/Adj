@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class OpcionType extends AbstractType
+class ModuloType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -14,19 +14,18 @@ class OpcionType extends AbstractType
             ->add('Nombre')
             ->add('Descripcion')
             ->add('Src')
-            ->add('moduloId')
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Pablo\AdjWebBundle\Entity\Opcion'
+            'data_class' => 'Pablo\AdjWebBundle\Entity\Modulo'
         ));
     }
 
     public function getName()
     {
-        return 'pablo_adjwebbundle_opciontype';
+        return 'pablo_adjwebbundle_modulotype';
     }
 }

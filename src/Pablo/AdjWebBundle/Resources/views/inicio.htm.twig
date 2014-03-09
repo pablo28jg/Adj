@@ -15,11 +15,16 @@
 		{% endblock %}
 	</head>
 	<body>
+		<div id="menu">
+		{% block menu %}
+			{% render "PabloAdjWebBundle:Modulo:listmodulosusuario" %}
+		{% endblock %}
+		</div>
 		<div id="barralateral">
 			{% block barralateral %}
 			<ul>
-				<li><a href="javascript: addItemBarraEstado('avances')">Avances</a></li>
-				<li><a href="javascript: addItemBarraEstado('expedientes')">Expedientes</a></li>
+				<li><a href="javascript: addItemBarraEstado('avances','avances','')">Avances</a></li>
+				<li><a href="javascript: addItemBarraEstado('expedientes','expedientes','')">Expedientes</a></li>
 			</ul>
 			{% endblock %}
 		</div>
@@ -30,8 +35,8 @@
 			<div>Ventanas abiertas</div>
 			{% block barraestado %} {% endblock %}
 		</div>
-	</body>
-	<script type="text/javascript">
-		{% block javascriptbajo %}{% endblock %}
-	</script>
+		<script type="text/javascript">
+			{% block javascriptbajo %}{% endblock %}
+		</script>
+	</body>	
 </html>

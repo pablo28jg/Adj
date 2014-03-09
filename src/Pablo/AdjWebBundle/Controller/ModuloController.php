@@ -5,74 +5,74 @@ namespace Pablo\AdjWebBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Pablo\AdjWebBundle\Entity\Opcion;
-use Pablo\AdjWebBundle\Form\OpcionType;
+use Pablo\AdjWebBundle\Entity\Modulo;
+use Pablo\AdjWebBundle\Form\ModuloType;
 
 /**
- * Opcion controller.
+ * Modulo controller.
  *
  */
-class OpcionController extends Controller
+class ModuloController extends Controller
 {
     /**
-     * Lists all Opcion entities.
+     * Lists all Modulo entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('PabloAdjWebBundle:Opcion')->findAll();
+        $entities = $em->getRepository('PabloAdjWebBundle:Modulo')->findAll();
 
-        return $this->render('PabloAdjWebBundle:Opcion:index.html.twig', array(
+        return $this->render('PabloAdjWebBundle:Modulo:index.html.twig', array(
             'entities' => $entities,
         ));
     }
 
     /**
-     * Finds and displays a Opcion entity.
+     * Finds and displays a Modulo entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PabloAdjWebBundle:Opcion')->find($id);
+        $entity = $em->getRepository('PabloAdjWebBundle:Modulo')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Opcion entity.');
+            throw $this->createNotFoundException('Unable to find Modulo entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PabloAdjWebBundle:Opcion:show.html.twig', array(
+        return $this->render('PabloAdjWebBundle:Modulo:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to create a new Opcion entity.
+     * Displays a form to create a new Modulo entity.
      *
      */
     public function newAction()
     {
-        $entity = new Opcion();
-        $form   = $this->createForm(new OpcionType(), $entity);
+        $entity = new Modulo();
+        $form   = $this->createForm(new ModuloType(), $entity);
 
-        return $this->render('PabloAdjWebBundle:Opcion:new.html.twig', array(
+        return $this->render('PabloAdjWebBundle:Modulo:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a new Opcion entity.
+     * Creates a new Modulo entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity  = new Opcion();
-        $form = $this->createForm(new OpcionType(), $entity);
+        $entity  = new Modulo();
+        $form = $this->createForm(new ModuloType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -80,33 +80,33 @@ class OpcionController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('opcion_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('modulo_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('PabloAdjWebBundle:Opcion:new.html.twig', array(
+        return $this->render('PabloAdjWebBundle:Modulo:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Opcion entity.
+     * Displays a form to edit an existing Modulo entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PabloAdjWebBundle:Opcion')->find($id);
+        $entity = $em->getRepository('PabloAdjWebBundle:Modulo')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Opcion entity.');
+            throw $this->createNotFoundException('Unable to find Modulo entity.');
         }
 
-        $editForm = $this->createForm(new OpcionType(), $entity);
+        $editForm = $this->createForm(new ModuloType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PabloAdjWebBundle:Opcion:edit.html.twig', array(
+        return $this->render('PabloAdjWebBundle:Modulo:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -114,31 +114,31 @@ class OpcionController extends Controller
     }
 
     /**
-     * Edits an existing Opcion entity.
+     * Edits an existing Modulo entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PabloAdjWebBundle:Opcion')->find($id);
+        $entity = $em->getRepository('PabloAdjWebBundle:Modulo')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Opcion entity.');
+            throw $this->createNotFoundException('Unable to find Modulo entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new OpcionType(), $entity);
+        $editForm = $this->createForm(new ModuloType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('opcion_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('modulo_edit', array('id' => $id)));
         }
 
-        return $this->render('PabloAdjWebBundle:Opcion:edit.html.twig', array(
+        return $this->render('PabloAdjWebBundle:Modulo:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -146,7 +146,7 @@ class OpcionController extends Controller
     }
 
     /**
-     * Deletes a Opcion entity.
+     * Deletes a Modulo entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -156,17 +156,17 @@ class OpcionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('PabloAdjWebBundle:Opcion')->find($id);
+            $entity = $em->getRepository('PabloAdjWebBundle:Modulo')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Opcion entity.');
+                throw $this->createNotFoundException('Unable to find Modulo entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('opcion'));
+        return $this->redirect($this->generateUrl('modulo'));
     }
 
     private function createDeleteForm($id)
@@ -174,15 +174,16 @@ class OpcionController extends Controller
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
             ->getForm()
-        ;      
+        ;
     }
     
-    public function listopcionesmoduloAction($moduloId)
+    public function listmodulosusuarioAction()
     {
-    	$em = $this->getDoctrine()->getManager();    	
-    	$entities = $em->getRepository('PabloAdjWebBundle:Opcion')->listOpcionesModulo($moduloId);
-    	 
-    	return $this->render('PabloAdjWebBundle:Opcion:menu.htm.twig', array(
+    	$em = $this->getDoctrine()->getManager();
+    	$usuarioId = 0;
+    	$entities = $em->getRepository('PabloAdjWebBundle:Modulo')->listModulosUsuario($usuarioId);
+    	
+    	return $this->render('PabloAdjWebBundle:Modulo:menu.htm.twig', array(
     			'entities' => $entities,
     	));
     }

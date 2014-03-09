@@ -16,6 +16,14 @@
 	margin: 0px; 
 	position: relative;
 }
+#menu{
+	left: 16%;
+	padding-right: 5px;
+	top: 1px;
+	width: 68%;
+	margin: 0px; 
+	position: relative;
+}
 #menu ul li{
 	float: left;
 	list-style: none;
@@ -36,4 +44,13 @@
 .div_barraestado a{
 	text-decoration: none;
 	color: blue;
+}
+.div_titulo_ventana{
+	position: relative;
+	width:100%;
+	background-color: maroon;
+}
+.div_titulo_ventana_titulo{
+	float:left;
+	width:98%;
 }

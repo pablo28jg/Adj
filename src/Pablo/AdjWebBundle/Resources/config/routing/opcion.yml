@@ -1,6 +1,10 @@
 opcion:
     pattern:  /
     defaults: { _controller: "PabloAdjWebBundle:Opcion:index" }
+    
+opcion_list_opciones_modulo:
+    pattern:  /{moduloId}/listmodulos
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:listopcionesmodulo" }
 
 opcion_show:
     pattern:  /{id}/show
