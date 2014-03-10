@@ -9,3 +9,7 @@ PabloAdjWebBundle_opcion:
 PabloAdjWebBundle_modulo:
     resource: "@PabloAdjWebBundle/Resources/config/routing/modulo.yml"
     prefix:   /modulo
+
+PabloAdjWebBundle_atributo:
+    resource: "@PabloAdjWebBundle/Resources/config/routing/atributo.yml"
+    prefix:   /atributo

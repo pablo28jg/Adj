@@ -1,0 +1,30 @@
+atributo:
+    pattern:  /
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:index" }
+
+atributo_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:show" }
+
+atributo_new:
+    pattern:  /new
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:new" }
+
+atributo_create:
+    pattern:  /create
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:create" }
+    requirements: { _method: post }
+
+atributo_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:edit" }
+
+atributo_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:update" }
+    requirements: { _method: post }
+
+atributo_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:delete" }
+    requirements: { _method: post }
