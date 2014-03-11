@@ -14,7 +14,10 @@ class OpcionType extends AbstractType
             ->add('Nombre')
             ->add('Descripcion')
             ->add('Src')
-            ->add('moduloId')
+            ->add('moduloId','entity',array(
+    			'class' => 'Pablo\\AdjWebBundle\\Entity\\Modulo',
+    			'empty_value' => '',
+    	))
         ;
     }
 

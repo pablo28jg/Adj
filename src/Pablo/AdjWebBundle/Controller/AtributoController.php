@@ -176,4 +176,15 @@ class AtributoController extends Controller
             ->getForm()
         ;
     }
+    
+    public function listAtributosOpcionAction($opcionId)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$usuarioId = 0;
+    	$entities = $em->getRepository('PabloAdjWebBundle:Atributo')->listAtributosOpcion($opcionId);
+    	 
+    	return $this->render('PabloAdjWebBundle:Atributo:menu.htm.twig', array(
+    			'entities' => $entities,
+    	));
+    }
 }

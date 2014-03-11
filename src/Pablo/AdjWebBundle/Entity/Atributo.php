@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="Atributo")
+ * @ORM\Entity(repositoryClass="Pablo\AdjWebBundle\Entity\AtributoRepository")
  */
 class Atributo 
 {
