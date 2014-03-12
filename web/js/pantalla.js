@@ -42,7 +42,7 @@ function addItemBarraEstado(nombre,titulo,src,srcAtributos)
 			itemsBarraEstado[i] = nombre;						
 	}		
 	atributos(nombre,srcAtributos);
-	atributos(nombre,src);
+	contenido(nombre,src);
 }
 function findItem(nombre)
 {
@@ -125,7 +125,7 @@ function atributos(nombre,src)
 function contenido(nombre,src)
 {
 	//var cadena = ArmaCadena( "form" );	
-    //alert( src );
+    alert( src );
 	$.ajax({
 		async:true,
 		type: "GET",

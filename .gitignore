@@ -7,3 +7,5 @@
 *.php~
 app/config/parameters.yml
 *.php~
+app/config/parameters.yml
+*.php~
