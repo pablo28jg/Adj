@@ -5,7 +5,7 @@ function showItemBarraEstado(nombre)
 	hideItems();
 	$("#div_contenido_"+nombre).show();				
 }
-function addItemBarraEstado(nombre,titulo,src)
+function addItemBarraEstado(nombre,titulo,src,srcAtributos)
 {
 	var i;
 	var ventana, item;
@@ -21,7 +21,11 @@ function addItemBarraEstado(nombre,titulo,src)
 				ventana += '<div class="div_titulo_ventana_titulo">' + titulo + '</div>';
 				ventana += '<div><a href="javascript: removeItemBarraEstado(\'' + nombre + '\')">x</a></div>';
 			ventana += '</div>';
-			ventana += '<div>contenido expedientes</div>';
+			ventana += '<div id="div_cuerpo_contenido_' + nombre + '">';
+				ventana += '<div class="div_encabezado_contenido">encabezado</div>';
+				ventana += '<div class="div_cuerpo_contenido">cuerpo</div>';
+				ventana += '<div class="div_pie_contenido">pie</div>';
+			ventana += '</div>';
 		ventana += '</div>';
 		$("#contenido").append(ventana);
 		item = '<div id="div_barra_'+nombre+'" class="div_barraestado">';
@@ -37,6 +41,8 @@ function addItemBarraEstado(nombre,titulo,src)
 		else
 			itemsBarraEstado[i] = nombre;						
 	}		
+	atributos(nombre,srcAtributos);
+	atributos(nombre,src);
 }
 function findItem(nombre)
 {
@@ -80,4 +86,70 @@ function modulos(src)
 {
 	alert(src);
 	$("#barralateral").load(src);
+}
+
+function atributos(nombre,src)
+{
+	//var cadena = ArmaCadena( "form" );	
+    //alert( src );
+	$.ajax({
+		async:true,
+		type: "GET",
+		dataType: "html",
+		contentType: "application/x-www-form-urlencoded",
+		url:src,
+		//data:"op=op&" + cadena,
+		beforeSend:inicioEnvio,
+		success:llegadaDatos,
+		timeout:10000,
+		error:problemas
+	}); 		 
+	function inicioEnvio()
+	{
+		$("#div_cuerpo_contenido_" + nombre + " .div_encabezado_contenido").html("");
+		$("#div_cuerpo_contenido_" + nombre + " .div_pie_contenido").html("");		
+	}			
+	function llegadaDatos(datos)
+	{			
+		//alert( datos );
+		$("#div_cuerpo_contenido_" + nombre + " .div_encabezado_contenido").html(datos);
+		$("#div_cuerpo_contenido_" + nombre + " .div_pie_contenido").html(datos);
+	}			
+	function problemas()
+	{
+		//FunProblems();
+		alert("problema");
+	}
+}
+
+function contenido(nombre,src)
+{
+	//var cadena = ArmaCadena( "form" );	
+    //alert( src );
+	$.ajax({
+		async:true,
+		type: "GET",
+		dataType: "html",
+		contentType: "application/x-www-form-urlencoded",
+		url:src,
+		//data:"op=op&" + cadena,
+		beforeSend:inicioEnvio,
+		success:llegadaDatos,
+		timeout:10000,
+		error:problemas
+	}); 		 
+	function inicioEnvio()
+	{
+		$("#div_cuerpo_contenido_" + nombre + " .div_cuerpo_contenido").html("");	
+	}			
+	function llegadaDatos(datos)
+	{			
+		//alert( datos );
+		$("#div_cuerpo_contenido_" + nombre + " .div_cuerpo_contenido").html(datos);
+	}			
+	function problemas()
+	{
+		//FunProblems();
+		alert("problema");
+	}
 }

@@ -1,6 +1,10 @@
 atributo:
     pattern:  /
     defaults: { _controller: "PabloAdjWebBundle:Atributo:index" }
+    
+opcion_list_atributos_opcion:
+    pattern:  /{opcionId}/listatributos
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:listAtributosOpcion" }
 
 atributo_show:
     pattern:  /{id}/show
