@@ -5,6 +5,11 @@ opcion:
 opcion_list_opciones_modulo:
     pattern:  /{moduloId}/listmodulos
     defaults: { _controller: "PabloAdjWebBundle:Opcion:listopcionesmodulo" }
+    
+opcion_list_atributos_opcion_json:
+    pattern:  /{opcionId}/listatributosopciones.{_format}
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:listAtributosOpcionJson", _format: json}
+    requirements: { _format: (xml|json), _method: GET }  
 
 opcion_show:
     pattern:  /{id}/show

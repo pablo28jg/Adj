@@ -7,6 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Pablo\AdjWebBundle\Entity\Opcion;
 use Pablo\AdjWebBundle\Form\OpcionType;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+//use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+
 
 /**
  * Opcion controller.
@@ -185,5 +191,52 @@ class OpcionController extends Controller
     	return $this->render('PabloAdjWebBundle:Opcion:menu.htm.twig', array(
     			'entities' => $entities,
     	));
+    }
+    
+    public function listAtributosOpcionJsonAction($opcionId)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entities = $em->getRepository('PabloAdjWebBundle:Atributo')->listAtributosOpcion($opcionId);
+    	
+    	/*$array = array(
+    			'1' => array(
+    				'year' => '2009',
+    				'nissan' => '5',
+    				'maserati' => '254'
+    			),
+    			'2' => array(
+    					'year' => '2010',
+    					'nissan' => '6',
+    					'maserati' => '354'
+    			),
+    			'3' => array(
+    					'year' => '2011',
+    					'nissan' => '7',
+    					'maserati' => '454'
+    			),
+    			'4' => array(
+    					'year' => '2012',
+    					'nissan' => '7',
+    					'maserati' => '454'
+    			),
+    			'5' => array(
+    					'year' => '2013',
+    					'nissan' => '7',
+    					'maserati' => '454'
+    			),
+    	);*/
+    	
+    	$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new JsonEncoder()));
+    	$json = $serializer->serialize($entities, 'json');
+    	
+    	/*$serializedCities = array();
+    	foreach ($entities as $atributo) {
+    		$serializedCities[] = $serializer->normalize($atributo, 'json');
+    	}*/
+    	 
+    	//$jsonEncoder = new JsonEncoder();
+    	$response = new Response($json);
+    	//$response = new Response($jsonEncoder->encode($entities, $format = 'json'));
+    	return $response;
     }
 }

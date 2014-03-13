@@ -39,10 +39,10 @@ function addItemBarraEstado(nombre,titulo,src,srcAtributos)
 			contadorItemsBarraEstado++;	
 		}	
 		else
-			itemsBarraEstado[i] = nombre;						
-	}		
-	atributos(nombre,srcAtributos);
-	contenido(nombre,src);
+			itemsBarraEstado[i] = nombre;
+		atributos(nombre,srcAtributos);
+		contenido(nombre,src);
+	}			
 }
 function findItem(nombre)
 {
