@@ -36,6 +36,12 @@ class OpcionAtributo
 	 * })
 	 */
 	private $AtributoId;
+	
+	/**
+	 * @var string $Src
+	 * @ORM\Column(name="Src", type="string", length=300, nullable=false)
+	 */
+	private $Src;
 
     /**
      * Get id
@@ -91,5 +97,28 @@ class OpcionAtributo
     public function getAtributoId()
     {
         return $this->AtributoId;
+    }
+
+    /**
+     * Set Src
+     *
+     * @param string $src
+     * @return OpcionAtributo
+     */
+    public function setSrc($src)
+    {
+        $this->Src = $src;
+    
+        return $this;
+    }
+
+    /**
+     * Get Src
+     *
+     * @return string 
+     */
+    public function getSrc()
+    {
+        return $this->Src;
     }
 }
