@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Pablo\AdjWebBundle\Entity\Atributo;
 use Pablo\AdjWebBundle\Form\AtributoType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Atributo controller.
@@ -186,5 +187,17 @@ class AtributoController extends Controller
     	return $this->render('PabloAdjWebBundle:Atributo:menu.htm.twig', array(
     			'entities' => $entities,
     	));
+    }
+    
+    public function listAtributosJsonAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entities = $em->getRepository('PabloAdjWebBundle:Atributo')->listAtributos();
+    
+    	$serializer = $this->get('serializer');
+    	 
+    	$json = $serializer->serialize($entities, 'json');
+    	$response = new Response($json);
+    	return $response;
     }
 }

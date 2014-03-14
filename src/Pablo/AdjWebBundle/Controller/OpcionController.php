@@ -201,19 +201,16 @@ class OpcionController extends Controller
     	
     	$serializedCities = array();
     	foreach ($entities as $enti) {
-    		$serializedCities[] = array(
-    				"ModuloId" => $enti->getId(),
-    				"Nombre" => $enti->getNombre(),
+    		$Atributo = $enti->getAtributoId();
+    		$serializedCities[] = array(    		
+    				"AtributoId" => $Atributo->getId(),
+    				"Atributo" => $Atributo->getNombre(),
+    				"Src" => $enti->getSrc(),
     		);
     	}
     	
     	$json = $serializer->serialize($serializedCities, 'json');
-    	 
-    	//$jsonEncoder = new JsonEncoder();
     	$response = new Response($json);
-    	//$response = new Response($jsonEncoder->encode($entities, $format = 'json'));
-    	//$response = new Response($data);
-    	//return $response;
     	return $response;
-    }
+    }    
 }

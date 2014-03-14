@@ -6,7 +6,15 @@ class AtributoRepository extends EntityRepository
 	public function listAtributosOpcion($opcionId)
 	{
 		return $this->getEntityManager()
-		->createQuery('SELECT a FROM PabloAdjWebBundle:Modulo a ')
+		->createQuery('SELECT a FROM PabloAdjWebBundle:OpcionAtributo a ')
+		//->setParameter('ModuloId', $moduloId)
+		->getResult();
+	}
+	
+	public function listAtributos()
+	{
+		return $this->getEntityManager()
+		->createQuery('SELECT a FROM PabloAdjWebBundle:Atributo a ')
 		//->setParameter('ModuloId', $moduloId)
 		->getResult();
 	}

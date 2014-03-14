@@ -32,3 +32,8 @@ atributo_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PabloAdjWebBundle:Atributo:delete" }
     requirements: { _method: post }
+    
+opcion_list_atributos_json:
+    pattern:  /listatributos
+    defaults: { _controller: "PabloAdjWebBundle:Atributo:listAtributosJson", _format: json}
+    requirements: { _format: (xml|json), _method: GET }  
