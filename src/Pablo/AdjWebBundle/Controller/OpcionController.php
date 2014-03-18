@@ -9,6 +9,7 @@ use Pablo\AdjWebBundle\Entity\Opcion;
 use Pablo\AdjWebBundle\Form\OpcionType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Serializer;
+use Pablo\AdjWebBundle\Entity\OpcionAtributo;
 //use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 //use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -202,8 +203,8 @@ class OpcionController extends Controller
     	$serializedCities = array();
     	foreach ($entities as $enti) {
     		$Atributo = $enti->getAtributoId();
-    		$serializedCities[] = array(    		
-    				"AtributoId" => $Atributo->getId(),
+    		$serializedCities[] = array(    	
+    				"OpcionId" => $opcionId,	
     				"Atributo" => $Atributo->getNombre(),
     				"Src" => $enti->getSrc(),
     		);
@@ -212,5 +213,51 @@ class OpcionController extends Controller
     	$json = $serializer->serialize($serializedCities, 'json');
     	$response = new Response($json);
     	return $response;
-    }    
+    }  
+
+    public function saveAtributosOpcionJsonAction(Request $request)
+    {      	
+    	$saved = false;
+    	$Atributo= "";
+    	if($request->getMethod() == 'POST') 
+    	{
+    		$data = $_POST['data'];
+    	} 
+    	if(is_array($data))
+    	{
+    		foreach($data as $dato)
+    		{
+    			if($dato["Atributo"] != '')
+    			{
+    				$em = $this->getDoctrine()->getManager();
+    				$atributoId = $em->getRepository('PabloAdjWebBundle:Opcion')->findOneBy(array("Nombre" => $dato['Atributo']));
+    				$opcionId = $em->getRepository('PabloAdjWebBundle:Opcion')->find($dato['OpcionId']);
+    				$entity = $em->getRepository('PabloAdjWebBundle:OpcionAtributo')->findOneBy(array(
+    						"AtributoId" => $atributoId ,"OpcionId" => $opcionId));
+    				if ($entity)
+    				{
+    					$entity->setSrc($dato['Src']);
+    					$em->persist($entity);
+    					$em->flush();
+    				}
+    				else 
+    				{    					
+    					$entity = new OpcionAtributo();
+    					$entity->setOpcionId($opcionId);
+    					$entity->setAtributoId($atributoId);
+    					$entity->setSrc($dato['Src']);
+    					$em->persist($entity);
+    					$em->flush();
+    				}
+    				$Atributo = $dato['Atributo'];
+    				$saved = true;
+    			}
+    		} 		
+    	}
+    	$serializedCities = array("result" => $saved, "data" => $Atributo);
+    	$serializer = $this->get('serializer');
+    	$json = $serializer->serialize($serializedCities, 'json');
+    	$response = new Response($json);
+    	return $response;
+    }
 }

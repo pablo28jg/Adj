@@ -22,7 +22,7 @@
 		});
 		function contenido()
 		{
-			var src = 'http://localhost/adj/web/app_dev.php/opcion/1/listatributosopciones.json';	
+			var src = 'http://localhost/adj/web/app_dev.php/opcion/1/listatributosopcion.json';	
 		    //alert( src );
 			$.ajax({
 				dataType: "json",
@@ -39,14 +39,9 @@
 						 //data: getCarData(),
 						 minSpareRows: 1,
 						 startCols: 3,				 
-						 colHeaders: ["AtributoId","Atributo","Src"],
+						 colHeaders: ["Atributo","Src"],
 						 //contextMenu: true
 						 columns: [
-				           	{
-					           	data: 'AtributoId',
-					           	type: 'numeric',
-					           	readOnly: true			           	
-				           	},
 				           	{
 						        data: 'Atributo',
 				             	type: 'dropdown',
@@ -66,6 +61,35 @@
 				alert("problema");
 			}
 		}
+
+		function saveData(url)
+		{
+			var handsontable = $('#example').handsontable('getInstance');
+			//url += ".json";
+			var datas = {"data" : handsontable.getData()};
+			$.ajax({
+			    url: url,
+			    data: datas, //returns all cells' data
+			    dataType: 'json',
+			    //contentType: 'application/json',
+			    //contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			    type: 'POST',
+			    timeout:10000,
+			    success: function (res) {
+				    alert(res.data);
+				    alert(res.l);
+			      if (res.result === true) {
+			        alert('Data saved');
+			      }
+			      else {
+			        alert('Save error');
+			      }
+			    },
+			    error: function () {
+			     	alert('Save error. POST method is not allowed on GitHub Pages. Run this example on your own server to see the success message.');
+			    }
+			});
+		}
 		contenido();
 		</script>
 		{% block javascript %}	
@@ -81,6 +105,7 @@
 		    <p>
 		        <button type="submit">Edit</button>
 		    </p>
+		    <a href="javascript: saveData('{{ path('opcion_save_atributos_opcion_json') }}')">save</a>
 		</form>		
 		
 		<ul class="record_actions">
@@ -99,6 +124,6 @@
 		<div id="results"></div>
 		<script type="text/javascript">			
 			$('#example').handsontable();			
-		</script>
+		</script>		
 	</body>	
 </html>
