@@ -7,8 +7,8 @@ class AtributoRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 		->createQuery('SELECT oa FROM PabloAdjWebBundle:OpcionAtributo oa
-				JOIN oa.AtributoId a WHERE a.Nombre = \'create\'')
-		//->setParameter('ModuloId', $moduloId)
+				JOIN oa.OpcionId o WHERE o.id = :OpcionId')
+		->setParameter('OpcionId', $opcionId)
 		->getResult();
 	}
 	

@@ -222,6 +222,7 @@ class OpcionController extends Controller
     	if($request->getMethod() == 'POST') 
     	{
     		$data = $_POST['data'];
+    		$OpcionId = $_POST['OpcionId'];
     	} 
     	if(is_array($data))
     	{
@@ -230,8 +231,8 @@ class OpcionController extends Controller
     			if($dato["Atributo"] != '')
     			{
     				$em = $this->getDoctrine()->getManager();
-    				$atributoId = $em->getRepository('PabloAdjWebBundle:Opcion')->findOneBy(array("Nombre" => $dato['Atributo']));
-    				$opcionId = $em->getRepository('PabloAdjWebBundle:Opcion')->find($dato['OpcionId']);
+    				$atributoId = $em->getRepository('PabloAdjWebBundle:Atributo')->findOneBy(array("Nombre" => $dato['Atributo']));    				
+    					$opcionId = $em->getRepository('PabloAdjWebBundle:Opcion')->find($OpcionId);
     				$entity = $em->getRepository('PabloAdjWebBundle:OpcionAtributo')->findOneBy(array(
     						"AtributoId" => $atributoId ,"OpcionId" => $opcionId));
     				if ($entity)
@@ -248,13 +249,13 @@ class OpcionController extends Controller
     					$entity->setSrc($dato['Src']);
     					$em->persist($entity);
     					$em->flush();
-    				}
-    				$Atributo = $dato['Atributo'];
+    				}    				
+    				//$Atributo = $dato['Atributo'];
     				$saved = true;
     			}
     		} 		
     	}
-    	$serializedCities = array("result" => $saved, "data" => $Atributo);
+    	$serializedCities = array("result" => $saved);
     	$serializer = $this->get('serializer');
     	$json = $serializer->serialize($serializedCities, 'json');
     	$response = new Response($json);

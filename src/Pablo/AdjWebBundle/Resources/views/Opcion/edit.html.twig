@@ -22,8 +22,8 @@
 		});
 		function contenido()
 		{
-			var src = 'http://localhost/adj/web/app_dev.php/opcion/1/listatributosopcion.json';	
-		    //alert( src );
+			var src = 'http://localhost/adj/web/app_dev.php/opcion/{{ entity.id }}/listatributosopcion.json';	
+		    alert( src );
 			$.ajax({
 				dataType: "json",
 				url:src,
@@ -66,7 +66,8 @@
 		{
 			var handsontable = $('#example').handsontable('getInstance');
 			//url += ".json";
-			var datas = {"data" : handsontable.getData()};
+			var datas = {"data" : handsontable.getData(), "OpcionId": '{{ entity.id }}' };
+			//alert(datas.OpcionId);
 			$.ajax({
 			    url: url,
 			    data: datas, //returns all cells' data
@@ -76,12 +77,7 @@
 			    type: 'POST',
 			    timeout:10000,
 			    success: function (res) {
-				    alert(res.data);
-				    alert(res.l);
-			      if (res.result === true) {
-			        alert('Data saved');
-			      }
-			      else {
+			      if (res.result !== true) {
 			        alert('Save error');
 			      }
 			    },
