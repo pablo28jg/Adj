@@ -22,8 +22,7 @@
 		});
 		function contenido()
 		{
-			var src = 'http://localhost/adj/web/app_dev.php/opcion/{{ entity.id }}/listatributosopcion.json';	
-		    alert( src );
+			var src = 'http://localhost/adj/web/app_dev.php/opcion/{{ entity.id }}/listatributosopcion.json';			    
 			$.ajax({
 				dataType: "json",
 				url:src,
@@ -44,11 +43,13 @@
 						 columns: [
 				           	{
 						        data: 'Atributo',
-				             	type: 'dropdown',
+				             	type: 'dropdown',				           
 				             	source: dataArray
 				           	},
 				           	{
-								data: 'Src'
+								data: 'Src',
+								//validator: email_validator_fn,
+								allowInvalid: false
 					        }
 				         ]					       				 
 					};
@@ -62,30 +63,85 @@
 			}
 		}
 
-		function saveData(url)
+		var email_validator_fn = function (value, callback) {
+		  setTimeout(function(){
+		    if (/.+@.+/.test(value)) {
+		      callback(true);
+		    }
+		    else {
+		      callback(false);
+		    }
+		  }, 100);
+		};
+
+		function valida()
 		{
 			var handsontable = $('#example').handsontable('getInstance');
-			//url += ".json";
-			var datas = {"data" : handsontable.getData(), "OpcionId": '{{ entity.id }}' };
-			//alert(datas.OpcionId);
-			$.ajax({
-			    url: url,
-			    data: datas, //returns all cells' data
-			    dataType: 'json',
-			    //contentType: 'application/json',
-			    //contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			    type: 'POST',
-			    timeout:10000,
-			    success: function (res) {
-			      if (res.result !== true) {
-			        alert('Save error');
-			      }
-			    },
-			    error: function () {
-			     	alert('Save error. POST method is not allowed on GitHub Pages. Run this example on your own server to see the success message.');
-			    }
-			});
+			var length = handsontable.countRows() - 1;
+			var dato;
+			var valido = true;
+			for(i = 0;i < length;i++)
+			{
+				dato = handsontable.getDataAtCell(i,1);
+				if(dato == null || dato == "")
+					valido = false;
+			}
+			return valido;
 		}
+
+		function saveData(datos,url)
+		{
+			var handsontable = $('#example').handsontable('getInstance');
+			
+				//url += ".json";
+				var datas = {"data" : handsontable.getData(), "OpcionId": '{{ entity.id }}' };
+				//alert(datas.OpcionId);
+				$.ajax({
+				    url: url,
+				    data: datas, //returns all cells' data
+				    dataType: 'json',
+				    //contentType: 'application/json',
+				    //contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+				    type: 'POST',
+				    timeout:10000,
+				    success: function (res) {
+					     if (res.result !== true) {
+						    alert("Error");			         
+					     }
+					     $("body").html(datos);
+				    },
+				    error: function () {
+				     	alert('Save error. POST method is not allowed on GitHub Pages. Run this example on your own server to see the success message.');
+				    }
+				});
+			
+		}
+		$(document).ready(function(){
+			$( "form" ).on( "submit", function( event ) {
+				  event.preventDefault();
+				  var url = "{{ path('opcion_update', { 'id': entity.id }) }}";	
+				  var data = $( this ).serialize();			  
+				  $.ajax({
+					    url: url,
+					    data: data, //returns all cells' data
+					    dataType: 'html',
+					    type: 'POST',
+					    timeout:10000,
+					    success: function (datos) {
+					    	if(!valida())
+								alert("Validacion incorrecta");
+							else
+							{
+					    		saveData(datos,"{{ path('opcion_save_atributos_opcion_json') }}");
+							}
+					    },
+					    error: function () {
+					     	alert('Save error. POST method is not allowed on GitHub Pages. Run this example on your own server to see the success message.');
+					    }
+				});
+			});			
+		});
+		
 		contenido();
 		</script>
 		{% block javascript %}	
@@ -95,13 +151,12 @@
 	<body>
 		<h1>Opcion edit</h1>
 		
-		<form action="{{ path('opcion_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+		<form action="" method="post" {{ form_enctype(edit_form) }}>
 		    {{ form_widget(edit_form) }}
 		    <div id="example"></div>
 		    <p>
 		        <button type="submit">Edit</button>
-		    </p>
-		    <a href="javascript: saveData('{{ path('opcion_save_atributos_opcion_json') }}')">save</a>
+		    </p>		    
 		</form>		
 		
 		<ul class="record_actions">

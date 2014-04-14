@@ -153,3 +153,8 @@ function contenido(nombre,src)
 		alert("problema");
 	}
 }
+
+function loadAtributos()
+{
+	
+}

@@ -253,7 +253,7 @@ class OpcionController extends Controller
     				//$Atributo = $dato['Atributo'];
     				$saved = true;
     			}
-    		} 		
+    		}		
     	}
     	$serializedCities = array("result" => $saved);
     	$serializer = $this->get('serializer');
