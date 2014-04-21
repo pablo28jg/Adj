@@ -193,6 +193,16 @@ class OpcionController extends Controller
     	));
     }
     
+    public function listAtributosOpcionAction($opcionId)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entities = $em->getRepository('PabloAdjWebBundle:Atributo')->listAtributosOpcion($opcionId);
+    	 
+    	return $this->render('PabloAdjWebBundle:Atributo:menu.htm.twig', array(
+    			'entities' => $entities,
+    	));
+    }
+    
     public function listAtributosOpcionJsonAction($opcionId)
     {
     	$em = $this->getDoctrine()->getManager();

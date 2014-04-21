@@ -178,7 +178,7 @@ class AtributoController extends Controller
         ;
     }
     
-    public function listAtributosOpcionAction($opcionId)
+    /*public function listAtributosOpcionAction($opcionId)
     {
     	$em = $this->getDoctrine()->getManager();
     	$usuarioId = 0;
@@ -187,7 +187,7 @@ class AtributoController extends Controller
     	return $this->render('PabloAdjWebBundle:Atributo:menu.htm.twig', array(
     			'entities' => $entities,
     	));
-    }
+    }*/
     
     public function listAtributosJsonAction()
     {

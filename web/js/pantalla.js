@@ -84,14 +84,13 @@ function hideItems()
 
 function modulos(src)
 {
-	alert(src);
 	$("#barralateral").load(src);
 }
 
 function atributos(nombre,src)
 {
 	//var cadena = ArmaCadena( "form" );	
-    //alert( src );
+    alert( src );
 	$.ajax({
 		async:true,
 		type: "GET",
@@ -118,14 +117,14 @@ function atributos(nombre,src)
 	function problemas()
 	{
 		//FunProblems();
-		alert("problema");
+		alert("problema1");
 	}
 }
 
 function contenido(nombre,src)
 {
 	//var cadena = ArmaCadena( "form" );	
-    alert( src );
+    //alert( src );
 	$.ajax({
 		async:true,
 		type: "GET",

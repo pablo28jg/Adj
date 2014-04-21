@@ -11,6 +11,10 @@ opcion_list_atributos_opcion_json:
     defaults: { _controller: "PabloAdjWebBundle:Opcion:listAtributosOpcionJson"}
     requirements: { _format: (xml|json), _method: GET }  
     
+opcion_list_atributos_opcion:
+    pattern:  /{opcionId}/listatributos
+    defaults: { _controller: "PabloAdjWebBundle:Opcion:listAtributosOpcion"}
+    
 opcion_save_atributos_opcion_json:
     pattern:  /saveatributosopcion
     defaults: { _controller: "PabloAdjWebBundle:Opcion:saveAtributosOpcionJson", _format: (json)}
