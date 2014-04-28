@@ -28,10 +28,12 @@ function addItemBarraEstado(nombre,titulo,src,srcAtributos)
 			ventana += '</div>';
 		ventana += '</div>';
 		$("#contenido").append(ventana);
+		
 		item = '<div id="div_barra_'+nombre+'" class="div_barraestado">';
-		item = item + '<a href="javascript: addItemBarraEstado(\''+nombre+'\')">'+nombre+'</a>';
+		item = item + '<a href="javascript: addItemBarraEstado(\''+nombre+'\',\''+titulo+'\',\''+src+'\',\''+srcAtributos+'\')">'+titulo+'</a>';
 		item = item + '</div>';
 		$("#barraestado").append(item);
+		
 		i = findVacio();
 		if(i == -1)
 		{
@@ -84,7 +86,7 @@ function hideItems()
 
 function modulos(src)
 {
-	alert(src);
+	//alert(src);
 	$("#barralateral").load(src);
 }
 
@@ -111,7 +113,7 @@ function atributos(nombre,src)
 	}			
 	function llegadaDatos(datos)
 	{			
-		//alert( datos );
+		alert( datos );
 		$("#div_cuerpo_contenido_" + nombre + " .div_encabezado_contenido").html(datos);
 		$("#div_cuerpo_contenido_" + nombre + " .div_pie_contenido").html(datos);
 	}			
@@ -125,7 +127,7 @@ function atributos(nombre,src)
 function contenido(nombre,src)
 {
 	//var cadena = ArmaCadena( "form" );	
-    alert( src );
+    //alert( src );
 	$.ajax({
 		async:true,
 		type: "GET",

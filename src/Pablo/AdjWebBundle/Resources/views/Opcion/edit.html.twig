@@ -22,7 +22,8 @@
 		});
 		function contenido()
 		{
-			var src = 'http://localhost/adj/web/app_dev.php/opcion/{{ entity.id }}/listatributosopcion.json';			    
+			//var src = 'http://localhost:8081/adj/web/app_dev.php/opcion/{{ entity.id }}/listatributosopcion.json';
+			var src = '{{ path('opcion_list_atributos_opcion_json', { 'opcionId' : entity.id, '_format' : 'json' }) }}';				    
 			$.ajax({
 				dataType: "json",
 				url:src,
@@ -90,9 +91,10 @@
 		}
 
 		function saveData(datos,url)
-		{
+		{			
 			var handsontable = $('#example').handsontable('getInstance');
-			
+			if( handsontable.countRows() > 1)
+			{	
 				//url += ".json";
 				var datas = {"data" : handsontable.getData(), "OpcionId": '{{ entity.id }}' };
 				//alert(datas.OpcionId);
@@ -114,6 +116,7 @@
 				     	alert('Save error. POST method is not allowed on GitHub Pages. Run this example on your own server to see the success message.');
 				    }
 				});
+			}
 			
 		}
 		$(document).ready(function(){

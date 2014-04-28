@@ -6,8 +6,9 @@ class AtributoRepository extends EntityRepository
 	public function listAtributosOpcion($opcionId)
 	{
 		return $this->getEntityManager()
-		->createQuery('SELECT oa FROM PabloAdjWebBundle:OpcionAtributo oa
-				JOIN oa.OpcionId o WHERE o.id = :OpcionId')
+		->createQuery('SELECT o.id,oa.Src, a.Nombre FROM PabloAdjWebBundle:OpcionAtributo oa
+				INNER JOIN oa.AtributoId a
+				INNER JOIN oa.OpcionId o WHERE o.id = :OpcionId')
 		->setParameter('OpcionId', $opcionId)
 		->getResult();
 	}

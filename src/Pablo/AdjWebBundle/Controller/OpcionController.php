@@ -202,11 +202,11 @@ class OpcionController extends Controller
     	
     	$serializedCities = array();
     	foreach ($entities as $enti) {
-    		$Atributo = $enti->getAtributoId();
+    		//$Atributo = $enti->Nombre;//getAtributoId();
     		$serializedCities[] = array(    	
     				"OpcionId" => $opcionId,	
-    				"Atributo" => $Atributo->getNombre(),
-    				"Src" => $enti->getSrc(),
+    				"Atributo" => $enti['Nombre'],
+    				"Src" => $enti['Src'],
     		);
     	}
     	
