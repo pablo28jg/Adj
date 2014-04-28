@@ -1,3 +1,7 @@
 {% for entity in entities %}
+<<<<<<< HEAD
 <div><a href="javascript: atributo('{{ entity.Nombre }}','{{ entity.Src }}')">{{ entity.Nombre }}</a></div>
+=======
+<div><a href="javascript: atributo({{ entity.getAtributoId().getNombre() }},'{{ entity.Src }}')">{{ entity.getAtributoId().getDescripcion() }}</a></div>
+>>>>>>> 3a67801b1387b563f8ce59dea5e2dd16c072feb0
 {% endfor %}

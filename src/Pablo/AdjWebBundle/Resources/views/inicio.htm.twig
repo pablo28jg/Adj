@@ -22,10 +22,7 @@
 		</div>
 		<div id="barralateral">
 			{% block barralateral %}
-			<ul>
-				<li><a href="javascript: addItemBarraEstado('avances','avances','http://localhost/adj/web/app_dev.php/avance','http://localhost/adj/web/app_dev.php/atributo/1/listatributos')">Avances</a></li>
-				<li><a href="javascript: addItemBarraEstado('expedientes','expedientes','http://localhost/adj/web/app_dev.php/expediente','http://localhost/adj/web/app_dev.php/atributo/1/listatributos')">Expedientes</a></li>
-			</ul>
+				{% render "PabloAdjWebBundle:Opcion:listopcionesmodulo" with { 'moduloId' : 1 }%}
 			{% endblock %}
 		</div>
 		<div id="contenido">

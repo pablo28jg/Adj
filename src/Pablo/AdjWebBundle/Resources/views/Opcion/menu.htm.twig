@@ -1,5 +1,9 @@
 <ul>
 	{% for entity in entities %}
+<<<<<<< HEAD
 	<li><a href="javascript: addItemBarraEstado('{{ entity.Nombre }}','{{ entity.Descripcion }}','/adj/web/app_dev.php/{{ entity.Nombre }}','{{ path('opcion_list_atributos_opcion',{ 'opcionId': entity.id }) }}')">{{ entity.Descripcion }}</a></li>
+=======
+	<li><a href="javascript: addItemBarraEstado('{{ entity.Nombre }}','{{ entity.Descripcion }}','{{ path('opcion_list_opciones_modulo',{ 'moduloId': entity.id }) }}','{{ path('opcion_list_atributos_opcion',{ 'opcionId': entity.id }) }}')">{{ entity.Descripcion }}</a></li>
+>>>>>>> 3a67801b1387b563f8ce59dea5e2dd16c072feb0
 	{% endfor %}
 </ul>
